@@ -100,6 +100,8 @@ If --username and/or --dbname are not specified the current username is used as 
 ```
   -U, --username                  Database user
 
+  --password                      Database password
+
   -h, --host                      (Default: localhost) Database host
 
   -d, --dbname                    Database name

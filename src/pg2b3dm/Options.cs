@@ -6,6 +6,8 @@ public class Options
 {
     [Option('U', "username", Required = false, HelpText = "Database user")]
     public string User { get; set; }
+    [Option("password", Required = false, HelpText = "Database password")]
+    public string Password { get; set; }
     [Option('h', "host", Required = false, Default = "localhost", HelpText = "Database host")]
     public string Host { get; set; }
     [Option('d', "dbname", Required = false, HelpText = "Database name")]

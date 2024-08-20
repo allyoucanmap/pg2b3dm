@@ -31,12 +31,17 @@ class Program
             o.Database = string.IsNullOrEmpty(o.Database) ? Environment.UserName : o.Database;
 
             var connectionString = $"Host={o.Host};Username={o.User};Database={o.Database};Port={o.Port};CommandTimeOut=0";
-            var istrusted = TrustedConnectionChecker.HasTrustedConnection(connectionString);
-            if (!istrusted) {
-                Console.Write($"Password for user {o.User}: ");
-                password = PasswordAsker.GetPassword();
-                connectionString += $";password={password}";
-                Console.WriteLine();
+
+            if (string.IsNullOrEmpty(o.Password)) {
+                var istrusted = TrustedConnectionChecker.HasTrustedConnection(connectionString);
+                if (!istrusted) {
+                    Console.Write($"Password for user {o.User}: ");
+                    password = PasswordAsker.GetPassword();
+                    connectionString += $";password={password}";
+                    Console.WriteLine();
+                }
+            } else {
+                connectionString += $";password={o.Password}";
             }
 
             Console.WriteLine($"Start processing {DateTime.Now.ToLocalTime().ToString("s")}....");
